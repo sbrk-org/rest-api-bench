@@ -1,0 +1,8 @@
+strongloop:
+  build: .
+  environment:
+    NODE_ENV: production
+  volumes:
+  - server:/server
+  ports:
+  - "1337:1337"
