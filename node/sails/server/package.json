@@ -30,8 +30,8 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/anonymous node/sails user/server.git"
+    "url": "git://github.com/moul/server.git"
   },
-  "author": "anonymous node/sails user",
+  "author": "moul",
   "license": ""
 }
