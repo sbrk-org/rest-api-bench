@@ -2,4 +2,4 @@ FROM artificial/docker-sails:stable-pm2
 
 COPY server /server
 
-CMD sails lift
+CMD sails lift --dev
