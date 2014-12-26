@@ -7,7 +7,7 @@ VOLUME ["/server"]
 WORKDIR /server
 EXPOSE 1337
 
-COPY server/package.json /server/
+COPY package.json /server/
 RUN npm install
-COPY server /server
+COPY . /server
 #CMD

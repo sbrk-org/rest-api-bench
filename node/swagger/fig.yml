@@ -1,0 +1,8 @@
+api:
+  build: api
+  environment:
+    NODE_ENV: production
+  volumes:
+  - api:/server
+  ports:
+  - "1337:1337"
