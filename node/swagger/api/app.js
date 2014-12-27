@@ -3,6 +3,10 @@ var express  = require('express'),
     subapp   = express(),
     swagger  = require('swagger-node-express');
 
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
+var methodOverride = require('express-method-override');
+var session = require('express-session');
 
 var passport       = require('passport'),
     GitHubStrategy = require('passport-github').Strategy;
@@ -10,10 +14,45 @@ var passport       = require('passport'),
 
 var config = {
     'OAUTH_ID': '1234',
-    'OAUTH_TOKEN': '1234'
+    'OAUTH_TOKEN': '1234',
+    'SESSION_TOKEN': 'abcde'
 };
 
 
+
+subapp.use(bodyParser.json());
+subapp.use(bodyParser.urlencoded({extended: false}));
+subapp.use(cookieParser());
+subapp.use(methodOverride());
+subapp.use(session({ secret: config['SESSION_TOKEN'], resave: false }));
+subapp.use(passport.initialize());
+subapp.use(passport.session());
+//subapp.use(authenticate);
+swagger.setAppHandler(subapp);
+
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(methodOverride());
+app.use(session({ secret: config['SESSION_TOKEN'], resave: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(app.router);
+//app.use(authenticate);
+app.use('/api', subapp);
+app.use('/swagger', function(req, res, next) {
+    if (req.url === '/swagger') {
+        res.redirect('/swagger/');
+    }
+    next();
+});
+app.use('/swagger', express.static(path.join(__dirname, 'public/swagger')));
+app.use(express.static(path.join(__dirname, 'public/client')));
+
+
+app.listen(1337);
+
+/*
 passport.use(new GitHubStrategy({
     clientID: config['OAUTH_ID'],
     clientSecret: config['OAUTH_TOKEN'],
@@ -49,54 +88,32 @@ function authenticate(req, res, next) {
     res.redirect('/login');
   }
 }
+*/
 
 
 // configure express to use swagger for the `/api` route
+/*
 subapp.configure(function() {
-  subapp.use(express.cookieParser());
-  subapp.use(express.bodyParser());
-  subapp.use(express.methodOverride());
-  subapp.use(express.session({ secret: config['SESSION_TOKEN'] }));
-  subapp.use(passport.initialize());
-  subapp.use(passport.session());
-  subapp.use(authenticate);
-  swagger.setAppHandler(subapp);
 });
+*/
 
 
 // configure express for the static content on the `/` route
+/*
 app.configure(function() {
-  app.use(express.cookieParser());
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.session({ secret: config['SESSION_TOKEN'] }));
-  app.use(passport.initialize());
-  app.use(passport.session());
-  app.use(app.router);
-  app.use(authenticate);
-  app.use('/api', subapp); // mount `/api` using the subapp
-  // default document middleware for swagger/index.html
-  app.use('/swagger', function(req, res, next) {
-    if (req.url === '/swagger') {
-        res.redirect('/swagger/');
-    }
-    next();
-  });
-  app.use('/swagger', express.static(path.join(__dirname, 'public/swagger')));
-  app.use(express.static(path.join(__dirname, 'public/client')));
 });
+*/
 
 
 // GitHub OAuth routes
+/*
 app.get('/login', passport.authenticate('github'));
 app.get('/auth/github/callback',  passport.authenticate('github', { successReturnToOrRedirect: '/', failureRedirect: '/login' }));
 
 
 // Swagger configuration
 swagger.addModels(require('./models'));
-swagger.addGet(require('./controllers/user').get);
+//swagger.addGet(require('./controllers/user').get);
 swagger.configureSwaggerPaths('', '/doc', '');
-swagger.configure('', require('../package.json').version);
-
-
-app.listen(1337);
+swagger.configure('', require('./package.json').version);
+*/
