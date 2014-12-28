@@ -1,0 +1,8 @@
+server:
+  build: .
+  environment:
+    NODE_ENV: production
+  volumes:
+  - api:/server
+  ports:
+  - "5000:5000"
