@@ -10,6 +10,28 @@ MONGO_DBNAME = 'api-bench'
 RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
+# /teams
+teams = {
+    # allow teams to be modified
+    'resource_methods': ['GET', 'POST'],
+    # allow teams to be retrived by name
+    'additional_lookup': {
+        'url': 'regex("[\w]+")',
+        'field': 'name',
+        },
+    # what a team looks like in mongodb
+    'schema': {
+        'name': {
+            'type': 'string',
+            'minlength': 3,
+            'maxlength': 10,
+            },
+        'points': {
+            'type': 'int',
+            },
+        },
+    }
+
 # /users
 users = {
     # allow users to be modified
@@ -21,20 +43,19 @@ users = {
         },
     # what a user looks like in mongodb
     'schema': {
-        'users': {
-            'login': {
-                'type': 'string',
-                'minlength': 3,
-                'maxlength': 10,
-                },
-            'role': {
-                'type': 'list',
-                'allowed': ['participant', 'guest', 'admin']
-                },
+        'login': {
+            'type': 'string',
+            'minlength': 3,
+            'maxlength': 10,
+            },
+        'role': {
+            'type': 'list',
+            'allowed': ['participant', 'guest', 'admin']
             },
         },
     }
 
 DOMAIN = {
     'users': users,
+    'teams': teams,
     }
