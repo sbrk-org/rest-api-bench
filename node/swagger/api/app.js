@@ -1,7 +1,8 @@
 var express  = require('express'),
     app      = express(),
     subapp   = express(),
-    swagger  = require('swagger-node-express');
+    swagger  = require('swagger-node-express'),
+    path     = require('path');
 
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -24,7 +25,7 @@ subapp.use(bodyParser.json());
 subapp.use(bodyParser.urlencoded({extended: false}));
 subapp.use(cookieParser());
 subapp.use(methodOverride());
-subapp.use(session({ secret: config['SESSION_TOKEN'], resave: false }));
+subapp.use(session({ secret: config['SESSION_TOKEN'], resave: false, saveUninitialized: true }));
 subapp.use(passport.initialize());
 subapp.use(passport.session());
 //subapp.use(authenticate);
@@ -34,10 +35,10 @@ swagger.setAppHandler(subapp);
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride());
-app.use(session({ secret: config['SESSION_TOKEN'], resave: false }));
+app.use(session({ secret: config['SESSION_TOKEN'], resave: false, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(app.router);
+//app.use(app.router);
 //app.use(authenticate);
 app.use('/api', subapp);
 app.use('/swagger', function(req, res, next) {
@@ -91,26 +92,11 @@ function authenticate(req, res, next) {
 */
 
 
-// configure express to use swagger for the `/api` route
-/*
-subapp.configure(function() {
-});
-*/
-
-
-// configure express for the static content on the `/` route
-/*
-app.configure(function() {
-});
-*/
-
-
 // GitHub OAuth routes
-/*
 app.get('/login', passport.authenticate('github'));
 app.get('/auth/github/callback',  passport.authenticate('github', { successReturnToOrRedirect: '/', failureRedirect: '/login' }));
 
-
+/*
 // Swagger configuration
 swagger.addModels(require('./models'));
 //swagger.addGet(require('./controllers/user').get);
