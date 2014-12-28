@@ -25,6 +25,7 @@ teams = {
             'type': 'string',
             'minlength': 3,
             'maxlength': 10,
+            'unique': True,
             },
         'points': {
             'type': 'int',
@@ -47,6 +48,7 @@ users = {
             'type': 'string',
             'minlength': 3,
             'maxlength': 10,
+            'unique': True,
             },
         'role': {
             'type': 'list',
