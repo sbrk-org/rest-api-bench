@@ -54,6 +54,13 @@ users = {
             'type': 'list',
             'allowed': ['participant', 'guest', 'admin']
             },
+        'team': {
+            'type': 'objectid',
+            'data_relation': {
+                'resource': 'teams',
+                'field': '_id',
+                },
+            },
         },
     }
 
