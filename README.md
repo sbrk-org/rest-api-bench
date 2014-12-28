@@ -1,4 +1,6 @@
 rest-api-bench
 ==============
 
-few POCs of restful APIs with different technos
+Skeletons of restful APIs using different frameworks.
+
+* [python-eve](http://python-eve.org)
