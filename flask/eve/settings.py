@@ -12,7 +12,14 @@ ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
 # /users
 users = {
+    # allow users to be modified
     'resource_methods': ['GET', 'POST'],
+    # allow users to be retrieved by name
+    'additional_lookup': {
+        'url': 'regex("[\w]+")',
+        'field': 'login',
+        },
+    # what a user looks like in mongodb
     'schema': {
         'users': {
             'login': {
