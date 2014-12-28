@@ -9,6 +9,3 @@ up:	build
 
 shell:	build
 	fig run $(NAME) /bin/bash
-
-console:	build
-	fig run $(NAME) sails console
