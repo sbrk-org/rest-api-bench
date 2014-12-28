@@ -14,7 +14,7 @@ ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 teams = {
     # allow teams to be modified
     'resource_methods': ['GET', 'POST'],
-    # allow teams to be retrived by name
+    # allow teams to be retrieved by name
     'additional_lookup': {
         'url': 'regex("[\w]+")',
         'field': 'name',
