@@ -23,3 +23,6 @@ Bonus
 - Documentation generation (blueprint generation would be amazing)
 - Nice API -> HAL+json should be <3<3<3
 - Builtin authentication
+- Websocket support
+- Live reloading
+- SOA
