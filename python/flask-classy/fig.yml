@@ -1,0 +1,8 @@
+server:
+  build: .
+  environment:
+    NODE_ENV: production
+  volumes:
+  - api:/server
+  ports:
+  - "9191:9191"

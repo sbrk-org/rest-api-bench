@@ -1,0 +1,6 @@
+flask >=0.10.1
+flask-classy >= 0.6
+fluent-logger >=0.3.3
+voluptuous >=0.8.1
+Flask-SQLAlchemy >=1.0
+Flask-AlchemyView >=0.1.4

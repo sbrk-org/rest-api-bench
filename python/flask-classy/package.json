@@ -1,0 +1,23 @@
+{
+  "name": "pathwar-api-pathwar",
+  "version": "0.0.0",
+  "description": "Pathwar - Pathwar API",
+  "repository": {
+    "type": "git",
+    "url": "git@git.pathwar.net:pathwar/api-pathwar"
+  },
+  "scripts": {
+    "doc-serve": "./node_modules/aglio/bin/aglio.js -s -i blueprint.md -t cyborg-multi"
+  },
+  "keywords": [
+    "Pathwar",
+    "API"
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+    "aglio": ""
+  },
+  "author": "Manfred Touron <m@42.am>",
+  "license": "MIT"
+}
