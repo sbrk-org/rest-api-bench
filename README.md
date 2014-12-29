@@ -3,4 +3,18 @@ rest-api-bench
 
 Skeletons of restful APIs using different frameworks.
 
-* [python-eve](http://python-eve.org)
+---
+
+Requirements
+------------
+
+- Easy RESTful
+- Models through an ORM
+- Models can be linked together
+
+Bonus
+-----
+
+- Caching system
+- Documentation generation (blueprint generation would be amazing)
+- Nice API -> HAL+json should be <3<3<3
