@@ -3,8 +3,7 @@ package main
 import "github.com/sbrk-org/rest-api-bench/go/martini/pathwar"
 
 func main() {
-	m := pathwar.NewServer()
-
-	// Run
-	m.Run()
+	session := pathwar.NewSession("pathwar")
+	server := pathwar.NewServer(session)
+	server.Run()
 }
