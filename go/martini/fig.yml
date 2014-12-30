@@ -1,3 +1,11 @@
+martini:
+  build: app
+  links:
+  - mongo
+  #volumes:
+  #- app:/go/src/app
+
+
 mongo:
   image: mongo:latest
   ports:
