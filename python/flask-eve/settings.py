@@ -28,7 +28,7 @@ teams = {
             'unique': True,
             },
         'points': {
-            'type': 'int',
+            'type': 'integer',
             },
         },
     }
