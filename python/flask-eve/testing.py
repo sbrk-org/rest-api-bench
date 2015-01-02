@@ -6,7 +6,8 @@ import requests
 url = 'http://localhost:5000'
 
 def get_index():
-    resp = requests.get(url='{0}/'.format(url), params={})
+    h={'Authorization': 'oui'}
+    resp = requests.get(url='{0}/'.format(url), params={}, headers=h)
     data = json.loads(resp.text)
     print('GET / ==> {0}'.format(data))
 

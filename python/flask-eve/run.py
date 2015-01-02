@@ -4,12 +4,12 @@ from eve import Eve
 from eve.auth import TokenAuth
 from werkzeug.security import check_password_hash
 
-class CustomAuth(TokenAuth):
-    def check_auth(self, username, password, allowed_roles, resource, method):
+class MyAuth(TokenAuth):
+    def check_auth(self, token, allowed_roles, resource, method):
         # check token
+        print token
         users = app.data.driver.db['users']
-        users.find_one({'token': token})
-
+        return users.find_one({'token': token})
         # check authorizations
 
         # use Eve's own db driver; no additional connections/resources are used
@@ -26,7 +26,7 @@ def add_token(documents):
         token = uuid.UUID()
         document["token"] = token.hex()
      
-app = Eve(auth=CustomAuth)
+app = Eve(auth=MyAuth)
 app.on_insert_users += add_token
 
 if __name__ == '__main__':
