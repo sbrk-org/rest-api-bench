@@ -50,7 +50,7 @@ coupons = {
             'allowed': ['participant', 'guest', 'admin']
         },
         'validated_by': {
-#            'coupon_validate': True,
+            'iscoupon': True,
             'type': 'objectid',
             'data_relation': {
                 'resource': 'teams',
