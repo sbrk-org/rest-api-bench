@@ -33,6 +33,33 @@ teams = {
         },
     }
 
+# /coupons
+coupons = {
+    # allow users to be modified
+    'resource_methods': ['GET', 'POST'],
+    # what a user looks like in mongodb
+    'schema': {
+        'hash': {
+            'type': 'string',
+            'minlength': 3,
+            'maxlength': 10,
+            'unique': True,
+        },
+        'name': {
+            'type': 'list',
+            'allowed': ['participant', 'guest', 'admin']
+        },
+        'validated_by': {
+#            'coupon_validate': True,
+            'type': 'objectid',
+            'data_relation': {
+                'resource': 'teams',
+                'field': '_id',
+            },
+        },
+    },
+}
+
 # /users
 users = {
     # allow users to be modified
@@ -67,4 +94,5 @@ users = {
 DOMAIN = {
     'users': users,
     'teams': teams,
+    'coupons': coupons,
     }
