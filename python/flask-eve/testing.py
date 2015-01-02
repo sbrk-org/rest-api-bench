@@ -24,7 +24,7 @@ def get_users():
     resp = requests.get(url='{0}/users'.format(url), params={})
     data = json.loads(resp.text)
     print('GET /users ==> {0}'.format(data))
-
+    
 def main():
     get_index()
     get_teams()

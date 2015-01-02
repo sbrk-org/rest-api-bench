@@ -64,6 +64,8 @@ coupons = {
 users = {
     # allow users to be modified
     'resource_methods': ['GET', 'POST'],
+    # only superadmins can create users
+    'allowed_roles': ['admin'],
     # allow users to be retrieved by name
     'additional_lookup': {
         'url': 'regex("[\w]+")',
@@ -88,8 +90,12 @@ users = {
                 'field': '_id',
                 },
             },
-        },
+        'token': {
+            'type': 'string',
+            'required': True,
+        },    
     }
+}
 
 DOMAIN = {
     'users': users,
